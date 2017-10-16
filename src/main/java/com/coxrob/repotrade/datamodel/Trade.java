@@ -7,13 +7,14 @@ public class Trade {
     private int accountId;
     private String type;
     private BigDecimal cashAmount;
+    private String cashCurrency;
     private BigDecimal bondNominal;
     private String isin;
     private BigDecimal interestRate;
     private int startDate;
     private int endDate;
 
-    public Trade(int accountId, String type, BigDecimal cashAmount, BigDecimal bondNominal, String isin, BigDecimal interestRate, int startDate, int endDate) {
+    public Trade(int accountId, String type, BigDecimal cashAmount, String cashCurrency, BigDecimal bondNominal, String isin, BigDecimal interestRate, int startDate, int endDate) {
         this.accountId = accountId;
         this.type = type;
         this.cashAmount = cashAmount;
@@ -46,6 +47,14 @@ public class Trade {
 
     public void setCashAmount(BigDecimal cashAmount) {
         this.cashAmount = cashAmount;
+    }
+
+    public String getCashCurrency() {
+        return cashCurrency;
+    }
+
+    public void setCashCurrency(String cashCurrency) {
+        this.cashCurrency = cashCurrency;
     }
 
     public BigDecimal getBondNominal() {
@@ -87,34 +96,5 @@ public class Trade {
     public void setEndDate(int endDate) {
         this.endDate = endDate;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Trade trade = (Trade) o;
-
-        if (getAccountId() != trade.getAccountId()) return false;
-        if (getStartDate() != trade.getStartDate()) return false;
-        if (getEndDate() != trade.getEndDate()) return false;
-        if (!getType().equals(trade.getType())) return false;
-        if (!getCashAmount().equals(trade.getCashAmount())) return false;
-        if (!getBondNominal().equals(trade.getBondNominal())) return false;
-        if (!getIsin().equals(trade.getIsin())) return false;
-        return getInterestRate().equals(trade.getInterestRate());
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getAccountId();
-        result = 31 * result + getType().hashCode();
-        result = 31 * result + getCashAmount().hashCode();
-        result = 31 * result + getBondNominal().hashCode();
-        result = 31 * result + getIsin().hashCode();
-        result = 31 * result + getInterestRate().hashCode();
-        result = 31 * result + getStartDate();
-        result = 31 * result + getEndDate();
-        return result;
-    }
+    
 }
